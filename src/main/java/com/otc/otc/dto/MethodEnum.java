@@ -1,4 +1,4 @@
-package com.otc.otc;
+package com.otc.otc.dto;
 
 //import lombok.extern.java.Log;
 //import org.apache.coyote.BadRequestException;
@@ -8,7 +8,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 
 
-enum MethodEnum {
+public enum MethodEnum {
     GET("GET"),
     POST("POST"),
     PATCH("PATCH"),
