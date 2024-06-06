@@ -1,13 +1,10 @@
 package com.otc.otc.controller;
 
 
-import com.otc.otc.TcpWasServer;
-import com.otc.otc.annotations.Controller;
-import com.otc.otc.annotations.MethodMapping;
-import com.otc.otc.annotations.RequestMapping;
+import com.otc.otc.annotations.*;
 import com.otc.otc.dto.MethodEnum;
-
-import java.util.logging.Logger;
+import com.otc.otc.dto.Person;
+import com.otc.otc.dto.RequestData;
 
 @Controller
 @RequestMapping(url = "/test")
@@ -17,10 +14,10 @@ public class CommunityController {
 
     }
 
-    @MethodMapping(url = "/a",method = MethodEnum.GET)
-    public void hello(){
+    @MethodMapping(url = "/a",method = MethodEnum.POST)
+    public void hello(@RequestBody(required = false) Person requestData){
         System.out.println("hello");
-
+        System.out.println(requestData);
     }
 
     /**
@@ -29,8 +26,9 @@ public class CommunityController {
      * @param arg2
      */
     @MethodMapping(url = "/b",method = MethodEnum.GET)
-    public void helloWithParameter(String arg1,String arg2){
+    public void helloWithParameter(@RequestParam(required=false,defaultValue = "hello") String arg3, @RequestParam(required=false,defaultValue = "hello2") String arg4
+            , @RequestBody(required = false) RequestData requestData){
         System.out.println("helloWithParamater");
-        System.out.println(arg1 + "," + arg2);
+        System.out.println(arg3 + "," + arg4);
     }
 }

@@ -26,6 +26,7 @@ public class RequestMappingReflection {
 
     public Method getRoutedMethod(String requestUri, MethodEnum methodEnum) throws NoSuchMethodException {
         // 패키지 이름
+        //TODO 패키지 이름을 외부 파일에서 가져온다
         String packageName = "com.otc.otc";
 
         // 패키지 내 모든 클래스를 가져와서 검사합니다.
@@ -44,10 +45,10 @@ public class RequestMappingReflection {
                     if (!(annotation instanceof RequestMapping)) continue;
                     RequestMapping requestMapping = (RequestMapping) annotation;
 
-
                     String mappingUri = requestMapping.url();
                     StringBuilder stringBuilder = new StringBuilder(mappingUri);
-                    String onlyUri = requestUri.substring(0,requestUri.indexOf("?"));
+                    String onlyUri = requestUri.indexOf("?") != -1 ?
+                            requestUri.substring(0,requestUri.indexOf("?")) : requestUri;
 
                     //uri와 일치하는 메서드 있으면 가져옴
                     Method routeredMethod = getRouteredMethod(onlyUri, stringBuilder, clazz, methodEnum);
@@ -62,7 +63,6 @@ public class RequestMappingReflection {
         }catch (Exception e){
             e.printStackTrace();
         }
-
         throw new NoSuchMethodException("일치하는 메서드가 없습니다.");
     }
 

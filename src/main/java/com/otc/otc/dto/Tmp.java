@@ -1,11 +1,11 @@
 package com.otc.otc.dto;
 
 
-public class RequestData {
+public class Tmp {
     private MethodEnum method;
     private String uri;
 
-    public RequestData(MethodEnum method, String data){
+    public Tmp(MethodEnum method, String data){
         this.uri = data;
         this.method = method;
     }
