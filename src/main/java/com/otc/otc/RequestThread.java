@@ -31,9 +31,6 @@ username=john&password=123456
 @Log
 public class RequestThread implements Runnable {
 
-    private final int SERVER_PORT = 8080;
-    private final String uuid;
-    private final ConnectInfo connectInfo;
     private final BufferedWriter bufferedWriter;
     private final BufferedReader bufferedReader;
 
@@ -43,9 +40,7 @@ public class RequestThread implements Runnable {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
 
-    public RequestThread(String uuid, ConnectInfo connectInfo) {
-        this.uuid = uuid;
-        this.connectInfo = connectInfo;
+    public RequestThread(ConnectInfo connectInfo) {
         this.bufferedReader = connectInfo.bufferedReader;
         this.bufferedWriter = connectInfo.bufferedWriter;
         this.routerReflection = new RequestMappingReflection();

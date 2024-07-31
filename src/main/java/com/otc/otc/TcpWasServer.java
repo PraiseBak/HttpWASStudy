@@ -21,16 +21,6 @@ public class TcpWasServer {
 
     private Map<String, ConnectInfo> connectedUserMap;
 
-
-    public void openSocket(){
-        try {
-            serverSocket = new ServerSocket(SERVER_PORT);
-        } catch (IOException e) {
-            log.info("서버 연결에 실패하였습니다");
-        }
-
-    }
-
     public void init(){
         this.connectedUserMap = new HashMap<>();
     }
@@ -52,7 +42,7 @@ public class TcpWasServer {
                 String uuid = UUID.randomUUID().toString();
                 ConnectInfo connectInfo = new ConnectInfo(socket,input,output);
 
-                RequestThread serverThread = new RequestThread(uuid,connectInfo);
+                RequestThread serverThread = new RequestThread(connectInfo);
                 serverThread.run();
             }
 
